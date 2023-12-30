@@ -13,14 +13,17 @@
  *      }
  */
 
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+}
 
 android {
+    namespace 'com.google.android.setupcompat'
     // Not specifying compileSdkVersion here so clients can specify it; must be at least Q
+    compileSdk 34
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 28
+        minSdk 34
     }
 
     buildTypes {
@@ -38,11 +41,16 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        aidl = true
     }
 }
 
 dependencies {
-    implementation "androidx.annotation:annotation:1.0.0"
+    implementation 'androidx.annotation:annotation:1.7.1'
+    implementation 'com.google.errorprone:error_prone_annotations:2.24.0'
 }
